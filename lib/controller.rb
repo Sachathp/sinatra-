@@ -1,6 +1,7 @@
 require 'gossip'
 
 class ApplicationController < Sinatra::Base
+
   get '/' do
     erb :index, locals: {gossips: Gossip.all}
   end
@@ -18,6 +19,11 @@ class ApplicationController < Sinatra::Base
 
     redirect '/'
   end
+
+  get '/gossips/:id' do 
+    @gossip = Gossip.find(params['id'])
+    erb :show
+  end   
 end
 
 
